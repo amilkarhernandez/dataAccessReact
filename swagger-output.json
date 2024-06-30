@@ -5,7 +5,7 @@
     "description": "Modulo de Calificaciones",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "37.60.252.97:3000",
   "basePath": "/",
   "schemes": [
     "http"

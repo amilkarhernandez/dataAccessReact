@@ -5,7 +5,7 @@ const doc = {
         title: 'Unac Insight',
         description: 'Modulo de Calificaciones'
     },
-    host: "localhost:3000",
+    host: "37.60.252.97:3000",
     shemes: ['http']
 };
 
