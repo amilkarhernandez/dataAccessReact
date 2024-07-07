@@ -185,7 +185,7 @@
       }
     },
     "/api/users/delete/{id}": {
-      "patch": {
+      "delete": {
         "description": "",
         "parameters": [
           {

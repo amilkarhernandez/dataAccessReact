@@ -7,6 +7,6 @@ api.post('/users/create', usersController.registerUsers);
 api.get('/users/list', usersController.listUsers);
 api.patch('/users/update/:id', usersController.actualizar);
 api.patch('/users/updatePassword/:id', usersController.updatePassword);
-api.patch('/users/delete/:id', usersController.daleteUser);
+api.delete('/users/delete/:id', usersController.daleteUser);
 
 module.exports = api;
