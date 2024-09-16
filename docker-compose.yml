@@ -3,6 +3,6 @@ services:
     nucleoslab:
         build:
             context: ./
-        container_name: dataAccess-backend
+        container_name: data-access-back
         ports:
-            - "3000:3000"
+            - "3005:3005"

@@ -6,6 +6,10 @@ const swaggerUi = require("swagger-ui-express")
 const swaggerDocument = require("./swagger-output.json")
 require("dotenv").config();
 
+const auth_routes = require('./src/routes/AuthenticationRoutes');
+const user_routes = require('./src/routes/UsersRoutes');
+const suscriptions_routes = require('./src/routes/SuscriptionRoutes');
+
 const app = express();
 
 //Datos codifcados en URL
@@ -41,12 +45,10 @@ app.get("/status", (req, res) => {
     });
 });
 
-const auth_routes = require('./src/routes/AuthenticationRoutes');
-const user_routes = require('./src/routes/UsersRoutes');
-
 //use las Rutas
 app.use('/api', auth_routes);
 app.use('/api', user_routes);
+app.use('/api', suscriptions_routes);
 
 //Swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));

@@ -1,16 +1,18 @@
 const bcrypt = require("bcrypt-nodejs")
 
 const Users = require("../models/Users");
+const Suscripcion = require("../models/Suscripciones");
 const userRepository = require("../repositories/UsersRespository")
+const suscriptionRepository = require("../repositories/SuscripcionesRepository")
 const { Response } = require("../utils/Response");
 
 async function registerUsers(req, res) {
     const user = new Users();
+    const suscription = new Suscripcion();
     const params = req.body;
-
     try {
         // encript password
-        bcrypt.hash(params.password, null, null, async function (err, hash) {
+        await bcrypt.hash(params.password, null, null, async function (err, hash) {
             if (hash) {
                 user.password = hash;
             }
@@ -25,10 +27,22 @@ async function registerUsers(req, res) {
 
         // Save the user in database
         const resp = await userRepository.createUser(user);
+        console.log("resp", resp)
         if (resp) {
             Response.status = 201;
             Response.message = "Datos guardados correctamente en la base de datos";
             Response.result = resp;
+
+            //Crea la suscripcion
+            const userFind = await suscriptionRepository.findUserSuscription(resp._id);
+            console.log("userFind:", userFind)
+
+            if (userFind == null) {
+                suscription.userId = resp._id;
+                suscription.valorTotal = 0;
+                await suscriptionRepository.createSuscripcion(suscription)
+            }
+
             res.status(201).send(
                 Response
             );

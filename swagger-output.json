@@ -5,7 +5,7 @@
     "description": "Modulo de Calificaciones",
     "version": "1.0.0"
   },
-  "host": "37.60.252.97:3000",
+  "host": "localhost:3000",
   "basePath": "/",
   "schemes": [
     "http"
@@ -198,6 +198,90 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/suscriptions/find/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/suscriptions/movimientos/{idUser}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "idUser",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/suscriptions/movimiento": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "example": "any"
+                },
+                "suscriptionId": {
+                  "example": "any"
+                },
+                "valor": {
+                  "example": "any"
+                },
+                "operacion": {
+                  "example": "any"
+                },
+                "emailOrigen": {
+                  "example": "any"
+                },
+                "emailDestino": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
           },
           "500": {
             "description": "Internal Server Error"

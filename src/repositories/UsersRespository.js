@@ -1,12 +1,12 @@
 const UsuarioModel = require("../models/Users");
 
-module.exports.createUser = async (user) => {
+module.exports.createUser = async (userData) => {
     try {
-        return await user.save();
+        return await userData.save();
     } catch (err) {
         console.log(err)
         if (err.code === 11000) { // MongoDB error code for duplicate key
-            throw new Error(`El correo ${user.email} ya se encuentra en la Base de datos`);
+            throw new Error(`El correo ${userData.email} ya se encuentra en la Base de datos`);
         }
         throw new Error('Error al guardar los datos en la base de datos');
     }
